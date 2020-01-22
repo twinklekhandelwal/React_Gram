@@ -1,28 +1,42 @@
 import React from 'react';
 import images from './image';
+// import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 // import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 // import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-// import CardActions from '@material-ui/core/CardActions';
-// import Collapse from '@material-ui/core/Collapse';
-// import Avatar from '@material-ui/core/Avatar';
-// import IconButton from '@material-ui/core/IconButton';
+
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 // import FavoriteIcon from '@material-ui/icons/Favorite';
-// import ShareIcon from '@material-ui/icons/Share';
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 const   styles = theme => ({
+  root: {
+    display: "grid",
+    // width: '100%',
+    // height: '100%',
+    gridTemplateColumns: "22.5% 22.5% 22.5%",
+    justifyContent: "center",
+    // paddingTop:20,
+    padding:'80px',
+    
+   
+  },
     card: {
-      maxWidth: 545,
-      display: 'inline-block'
+       maxWidth: 445,
+      // height:800,
+      display: 'grid',
+      margin:'10px',
+      // padding: theme.spacing(2)
+  
     },
+    
     media: {
-      height: 0,
+      height:250,
+      // maxHeight: 0,
       paddingTop: '56.25%', // 16:9
     },
     expand: {
@@ -48,10 +62,16 @@ class Cards extends React.Component{
     }
     }
     render(){
+      
       const {classes} = this.props;
         return(
-            images.map(data=>
-                <Card className={classes.card}>
+          // <Container>
+           <div p={1} className = {classes.root}>
+            {images.map(data=>
+              
+              
+              
+                <Card className={classes.card} >
                   
                    <CardMedia
                     className={classes.media}
@@ -61,17 +81,26 @@ class Cards extends React.Component{
                   <CardContent>
                   
 					
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography  variant="body2" color="textSecondary" component="p">
                     
                     {data.caption}
                     {data.likes}
                        </Typography>
-                  
+                       <Button variant="outlined" ><FavoriteIcon/>{data.likes}
+ 
+</Button>
                   
                   </CardContent>
                 </Card>
-            )
+                
+               
+                
+            )}
+            </div>
+            // </Container>
+            
         )
+      
                     }
              
         }
