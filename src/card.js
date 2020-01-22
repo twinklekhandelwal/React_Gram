@@ -19,6 +19,7 @@ import { red } from '@material-ui/core/colors';
 const   styles = theme => ({
     card: {
       maxWidth: 545,
+      display: 'inline-block'
     },
     media: {
       height: 0,
