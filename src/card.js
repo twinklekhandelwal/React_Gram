@@ -1,8 +1,6 @@
 import React from 'react';
 import images from './image';
 
- 
-
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 // import clsx from 'clsx';
@@ -14,7 +12,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
 
 const styles = theme => ({
 	root: {
@@ -51,7 +48,7 @@ const styles = theme => ({
 		marginLeft: 10,
 		marginTop: 20,
 	},
-	
+
 	expand: {
 		transform: 'rotate(0deg)',
 		marginLeft: 'auto',
@@ -69,55 +66,53 @@ const styles = theme => ({
 class Cards extends React.Component {
 	// constructor(props) {
 	// 	super(props);
-		state = {
-			icon:0,
-			commit:""
-			 
-		};
-	// }
-	handleChange = (data) => {
-		
-		data.likes = data.likes + 1
-		this.setState({ icon:0});
+	state = {
+		icon: 0,
+		commit: false,
 	};
-submitchange=(e)=>{
-	this.setState({commit:e.target.value})
-}
+	// }
+	handleChange = data => {
+		data.likes = data.likes + 1;
+		this.setState({ icon: 0 });
+	};
+	submitchange = data => {
+		this.setState({ commit: true });
+	};
 	render() {
 		const { classes } = this.props;
 		return (
 			<div>
-				
-			
-			<div className={classes.root}>
-				{images.map(data => (
-					<Card className={classes.card}>
-						<CardMedia className={classes.media} image={data.display_src} />
-						<CardContent>
-							<Typography className={classes.text} variant="body2" color="textSecondary" component="p">
-								{data.caption}
-								
-								
-							</Typography>
-							<Button
-								variant="outlined"
-								className={classes.button}
-								onClick={() => this.handleChange(data)}>
-								<FavoriteIcon />
-								{data.likes}
-							</Button>
+				<div className={classes.root}>
+					{images.map(data => (
+						<Card className={classes.card}>
+							<CardMedia className={classes.media} image={data.display_src} />
+							<CardContent>
+								<Typography
+									className={classes.text}
+									variant="body2"
+									color="textSecondary"
+									component="p">
+									{data.caption}
+								</Typography>
+								<Button
+									variant="outlined"
+									className={classes.button}
+									onClick={() => this.handleChange(data)}>
+									<FavoriteIcon />
+									{data.likes}
+								</Button>
 
-							<Button variant="outlined" className={classes.buttons}>
-								<FavoriteIcon />
-							</Button>
-							
-						</CardContent>
-					</Card>
-					
-				))}
+								<Button
+									variant="outlined"
+									className={classes.buttons}
+									onClick={() => this.submitchange(data)}>
+									<FavoriteIcon />
+								</Button>
+							</CardContent>
+						</Card>
+					))}
+				</div>
 			</div>
-			</div>
-			
 		);
 	}
 }

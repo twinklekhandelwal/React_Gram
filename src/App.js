@@ -1,5 +1,6 @@
 import React from 'react';
 import Title from './title';
+import Fullcard from './fullcard'
 import './App.css';
 import Card from './card';
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
     <Title/>
       <Card />
+      <Fullcard />
       
     </div>
   );
