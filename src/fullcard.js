@@ -14,6 +14,10 @@ const useStyles = makeStyles({
 		height:300,
 		marginTop:520
   },
+  button:
+  {
+    marginTop:'10px'
+  }
   
 });
 export default function AlertDialog() {
@@ -31,7 +35,7 @@ export default function AlertDialog() {
 console.log(Comment)
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" className={classes.button} color="primary" onClick={handleClickOpen}>
         Open alert dialog
       </Button>
       <Dialog
