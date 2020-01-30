@@ -8,9 +8,10 @@ function App() {
     <div className="App">
     <Title/>
       <Card />
-      <Fullcard />
+        <Fullcard />  
       
     </div>
+    
   );
 }
 

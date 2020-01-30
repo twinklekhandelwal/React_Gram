@@ -5,13 +5,14 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 // import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
-
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-
+import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+// import Modal from '@material-ui/core/Modal';
+import TransitionsModal from './fullcard';
 
 const styles = theme => ({
 	root: {
@@ -32,8 +33,13 @@ const styles = theme => ({
 	},
 	button: {
 		// padding:20
+		width: 50,
+		marginTop: 20,
+	},
+	com_button:{
 		width: 150,
 		marginTop: 20,
+		marginLeft: 20,
 	},
 	text: {
 		justifyContent: 'left',
@@ -44,7 +50,7 @@ const styles = theme => ({
 		paddingTop: '56.25%', // 16:9
 	},
 	buttons: {
-		width: 150,
+		width: 50,
 		marginLeft: 10,
 		marginTop: 20,
 	},
@@ -68,15 +74,21 @@ class Cards extends React.Component {
 	// 	super(props);
 	state = {
 		icon: 0,
-		commit: false,
+		icons:0,
+		show:false
+		// commit: false,
 	};
 	// }
+	showbox=(props)=>{
+		this.setState({show:true})
+	}
 	handleChange = data => {
 		data.likes = data.likes + 1;
 		this.setState({ icon: 0 });
 	};
 	submitchange = data => {
-		this.setState({ commit: true });
+		data.likes = data.likes-1;
+		this.setState({ icons: 0 });
 	};
 	render() {
 		const { classes } = this.props;
@@ -98,16 +110,21 @@ class Cards extends React.Component {
 									variant="outlined"
 									className={classes.button}
 									onClick={() => this.handleChange(data)}>
-									<FavoriteIcon />
-									{data.likes}
+									<ThumbUpIcon />
+									{/* {data.likes} */}
 								</Button>
-
+								{data.likes}
 								<Button
 									variant="outlined"
 									className={classes.buttons}
 									onClick={() => this.submitchange(data)}>
-									<FavoriteIcon />
+									<ThumbDownAltIcon />
+									
 								</Button>
+								{/* <Button variant="outlined" className={classes.com_button} onClick={() => this.showbox()}>
+								comment
+							</Button> */}
+							<TransitionsModal />
 							</CardContent>
 						</Card>
 					))}
